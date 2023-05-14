@@ -1,8 +1,6 @@
-/*
- * Стили компонента Modal
- */
+import styled from '@emotion/styled';
 
-.Overlay {
+export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -13,9 +11,9 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 1200;
-}
+`;
 
-.Modal {
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
-}
+export const ModalStd = styled.div`
+  max-width: calc(100vw - 96px);
+  max-height: calc(100vh - 48px);
+`;

@@ -4,6 +4,7 @@ import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
 import Loader from './Loader/Loader';
+import Modal from './ModalWindow/Modal';
 import { Text } from './Text/Text.styled';
 import { Container } from './Container/Container.styled';
 
@@ -16,6 +17,8 @@ class App extends Component {
     isEmpty: false,
     showBtn: false,
     error: null,
+    showModal: false,
+    largePhoto: '',
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -58,8 +61,17 @@ class App extends Component {
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
+  openModal = largePhoto => {
+    this.setState({ showModal: true, largePhoto: largePhoto });
+  };
+
+  closeModal = () => {
+    this.setState({ showModal: false });
+  };
+
   render() {
-    const { items, isEmpty, showBtn, error, isLoading } = this.state;
+    const { items, isEmpty, showBtn, error, isLoading, showModal, largePhoto } =
+      this.state;
 
     return (
       <Container>
@@ -67,10 +79,13 @@ class App extends Component {
         {isEmpty && (
           <Text>Sorry. There are no images on your search ... 😭</Text>
         )}
-        <ImageGallery gallery={items} />
+        <ImageGallery gallery={items} openModal={this.openModal} />
         {showBtn && <Button onClick={this.handleButton} />}
         {isLoading && <Loader />}
         {error && <Text>Sorry. {error} 😭</Text>}
+        {showModal && (
+          <Modal largePhoto={largePhoto} closeModal={this.closeModal} />
+        )}
       </Container>
     );
   }

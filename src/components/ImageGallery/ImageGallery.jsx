@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import { ImageGalleryStd } from './ImageGallery.styled';
 
-const ImageGallery = ({ gallery }) => {
+const ImageGallery = ({ gallery, openModal }) => {
   return (
     <>
       <ImageGalleryStd>
@@ -13,6 +13,7 @@ const ImageGallery = ({ gallery }) => {
               alt={tags}
               photo={webformatURL}
               largePhoto={largeImageURL}
+              openModal={openModal}
             />
           );
         })}
@@ -23,6 +24,7 @@ const ImageGallery = ({ gallery }) => {
 
 ImageGallery.propTypes = {
   gallery: PropTypes.arrayOf(PropTypes.object),
+  openModal: PropTypes.func.isRequired,
 };
 
 export default ImageGallery;
