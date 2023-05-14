@@ -46,6 +46,10 @@ class App extends Component {
   }
 
   handleSubmit = query => {
+    if (query === this.state.value) {
+      alert('Please enter new query request');
+      return;
+    }
     this.setState({
       value: query,
       page: 1,
